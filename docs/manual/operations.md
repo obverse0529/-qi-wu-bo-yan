@@ -110,6 +110,42 @@ find /opt/backups -mtime +30 -delete
 
 ## 3. 监控告警
 
+### 3.0 Prometheus 指标（推荐）
+
+后端暴露 `/metrics` 端点（Prometheus 格式），可集成 Prometheus + Grafana：
+
+```bash
+# 验证指标端点
+curl http://localhost:8000/metrics
+```
+
+**Prometheus 配置示例** (`prometheus.yml`)：
+
+```yaml
+scrape_configs:
+  - job_name: qiwu-backend
+    scrape_interval: 15s
+    static_configs:
+      - targets: ["backend:8000"]
+    metrics_path: /metrics
+```
+
+**关键指标**：
+| 指标 | 说明 |
+|------|------|
+| `http_requests_total` | API 请求总数 |
+| `http_request_duration_seconds` | 请求延迟分布 |
+| `http_requests_in_flight` | 当前并发请求数 |
+| `db_connections_active` | 活跃数据库连接数 |
+| `cache_hit_ratio` | Redis 缓存命中率 |
+
+**健康检查端点**：
+| 端点 | 用途 |
+|------|------|
+| `GET /health` | 基本健康状态 |
+| `GET /api/v1/health` | API 层健康检查 |
+| `GET /health/detailed` | 详细健康（含各服务状态） |
+
 ### 3.1 简易监控脚本
 
 创建 `/opt/qi-wu-bo-yan/scripts/health_check.sh`：
