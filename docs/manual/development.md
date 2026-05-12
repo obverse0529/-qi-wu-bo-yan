@@ -32,15 +32,16 @@ cp .env.example .env
 ### 3. 启动中间件
 
 ```bash
-docker-compose -f docker/docker-compose.dev.yml up -d
+docker compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up -d
 ```
 
 这将启动：
 - PostgreSQL (:5432)
 - Neo4j (:7474, :7687)
-- Milvus (:19530)
+- Milvus (:9091)
 - MinIO (:9000, :9001)
 - Redis (:6379)
+- Nginx (:80)
 
 ### 4. 安装后端依赖
 
