@@ -1,0 +1,425 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   MUSEUM NOIR — Premium Design System
+   ============================================ */
+
+:root {
+  /* Colors */
+  --color-gold: #C9A962;
+  --color-gold-light: #E8D5A3;
+  --color-gold-dark: #8B6914;
+  --color-bg-deep: #050508;
+  --color-bg: #0a0a0f;
+  --color-bg-elevated: #14141f;
+  --color-surface: rgba(20, 20, 31, 0.6);
+  --color-border: rgba(201, 169, 98, 0.15);
+  --color-border-hover: rgba(201, 169, 98, 0.4);
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 169, 98, 0.08);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(201, 169, 98, 0.12);
+  --shadow-gold-glow: 0 0 30px rgba(201, 169, 98, 0.2);
+
+  /* Glass */
+  --glass-blur: 20px;
+  --glass-bg: rgba(20, 20, 31, 0.65);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', 'Noto Serif SC', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: #e5e5e5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-elevated);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-gold), var(--color-gold-dark));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ============================================
+   NOISE TEXTURE OVERLAY
+   ============================================ */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   BACKGROUND GRADIENT
+   ============================================ */
+.bg-museum {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 169, 98, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201, 169, 98, 0.05) 0%, transparent 50%),
+    var(--color-bg);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(201, 169, 98, 0.2); }
+  50% { border-color: rgba(201, 169, 98, 0.4); }
+}
+
+/* ============================================
+   ANIMATION CLASSES
+   ============================================ */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold-light) 25%, var(--color-gold) 50%, var(--color-gold-light) 75%, var(--color-gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Staggered children */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(11) { animation-delay: 0.55s; }
+.stagger-children > *:nth-child(12) { animation-delay: 0.6s; }
+
+/* ============================================
+   GLASS MORPHISM CARD
+   ============================================ */
+.card-glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%, rgba(201,169,98,0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.card-glass:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   CARD PREMIUM (enhanced Ant Design)
+   ============================================ */
+.card-premium {
+  background: rgba(20, 20, 31, 0.85);
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-base);
+  overflow: hidden;
+  position: relative;
+}
+
+.card-premium::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+}
+
+.card-premium:hover {
+  border-color: rgba(201, 169, 98, 0.4);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(201, 169, 98, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   TEXT STYLES
+   ============================================ */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 50%, var(--color-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.font-serif-cn {
+  font-family: 'Noto Serif SC', serif;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  border: none;
+  color: #0a0a0f;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.4s ease;
+}
+
+.btn-gold:hover::before {
+  left: 100%;
+}
+
+.btn-gold:hover {
+  box-shadow: 0 4px 20px rgba(201, 169, 98, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-ghost-gold {
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  transition: all var(--transition-fast);
+}
+
+.btn-ghost-gold:hover {
+  background: rgba(201, 169, 98, 0.1);
+  box-shadow: 0 0 20px rgba(201, 169, 98, 0.2);
+}
+
+/* ============================================
+   INPUT & FORM STYLES
+   ============================================ */
+.input-glass {
+  background: rgba(20, 20, 31, 0.8);
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  transition: all var(--transition-fast);
+}
+
+.input-glass:hover {
+  border-color: rgba(201, 169, 98, 0.4);
+}
+
+.input-glass:focus,
+.input-glass:focus-within {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1);
+  outline: none;
+}
+
+/* ============================================
+   DIVIDER / SEPARATOR
+   ============================================ */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0.3;
+}
+
+/* ============================================
+   BADGE / TAG
+   ============================================ */
+.tag-gold {
+  background: rgba(201, 169, 98, 0.15);
+  border: 1px solid rgba(201, 169, 98, 0.3);
+  color: var(--color-gold);
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+.ornament {
+  position: relative;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '◆';
+  color: var(--color-gold);
+  opacity: 0.3;
+  font-size: 0.5em;
+  vertical-align: middle;
+  margin: 0 0.5em;
+}
+
+.line-gold-horizontal {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 169, 98, 0.4) 50%, transparent 100%);
+}
+
+/* ============================================
+   THREE.JS CANVAS
+   ============================================ */
+.three-canvas {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  border-radius: inherit;
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(201, 169, 98, 0.05) 25%,
+    rgba(201, 169, 98, 0.1) 50%,
+    rgba(201, 169, 98, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.gold-border-glow {
+  box-shadow: 0 0 20px rgba(201, 169, 98, 0.15);
+}
+
+.hover-lift {
+  transition: transform var(--transition-fast);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(201, 169, 98, 0.3);
+  color: #fff;
+}

@@ -1,0 +1,44 @@
+# 知识蒸馏配置 - gemma3:4b → qwen2.5:3b
+
+# 教师模型 (DPO微调后的gemma3:4b)
+teacher_model_path: "models/gemma3_artifact_dpo/final"
+teacher_tokenizer_path: null  # 默认使用同路径
+
+# 学生模型
+student_model_name: "qwen2.5:3b"  # Ollama 或 HuggingFace 格式
+student_local_path: null
+
+# 文物数据
+artifact_data_path: "dataset/sample_artifacts.json"
+distill_samples: 200  # 生成多少条蒸馏样本
+
+# 生成参数
+temperature: 2.0
+top_p: 0.9
+max_new_tokens: 512
+
+# LoRA 配置 (学生模型)
+use_lora: true
+lora_r: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target_modules:
+  - "q_proj"
+  - "k_proj"
+  - "v_proj"
+  - "o_proj"
+  - "gate_proj"
+  - "up_proj"
+  - "down_proj"
+
+# 训练参数
+epochs: 3
+batch_size: 4
+learning_rate: 2.0e-4
+max_seq_length: 1024
+
+# 输出
+output_dir: "models/qwen2_5_artifact_student"
+distill_data_path: "dataset/annotations/distillation/distill_samples.jsonl"
+
+seed: 42

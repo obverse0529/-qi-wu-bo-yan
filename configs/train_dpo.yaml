@@ -1,0 +1,47 @@
+# DPO 训练配置 - 文物故事风格优化
+# 用于通过直接偏好优化提升故事生成质量
+
+# 模型配置
+model_name: "Qwen/Qwen2.5-3B"
+local_model_path: "models/llm/qwen2.5-3b-hf"  # 使用本地下载的模型
+ref_model_name: null   # 默认使用同模型作为参考
+
+# LoRA 配置
+use_lora: true
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target_modules:
+  - "q_proj"
+  - "k_proj"
+  - "v_proj"
+  - "o_proj"
+  - "gate_proj"
+  - "up_proj"
+  - "down_proj"
+
+# 数据配置
+preference_data_path: "dataset/annotations/preferences/preferences.jsonl"
+
+# DPO 参数
+beta: 0.1          # DPO temperature，越小越接近 reference
+label_smoothing: 0.0
+
+# 训练参数
+epochs: 3
+batch_size: 2
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-5
+warmup_ratio: 0.1
+max_grad_norm: 1.0
+
+# 硬件配置
+device: "cuda"
+dtype: "bf16"
+
+# 输出配置
+output_dir: "models/gemma3_artifact_dpo"
+log_dir: "models/gemma3_artifact_dpo/logs"
+
+# 随机种子
+seed: 42

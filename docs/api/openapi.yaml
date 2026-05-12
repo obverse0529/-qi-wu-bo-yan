@@ -1,0 +1,376 @@
+# 启物博言 API 文档
+
+## 概述
+
+本系统提供两类核心能力：
+1. **3D重建** - 多视图图像 → 3D模型
+2. **文物故事** - 文物信息 → AI生成的历史故事
+
+所有API均基于RESTful设计，返回JSON格式。
+
+---
+
+## 基础信息
+
+- **Base URL**: `http://localhost:8000/api/v1`
+- **认证**: 当前版本无需认证（生产环境需添加）
+- **请求格式**: `Content-Type: application/json`
+
+---
+
+## 文物管理
+
+### 创建文物
+
+```
+POST /artifacts
+```
+
+**请求体**:
+```json
+{
+  "name": "青铜鼎",
+  "dynasty": "商",
+  "category": "青铜器",
+  "site": "安阳",
+  "materials": "青铜",
+  "techniques": "铸造",
+  "description": "商代晚期青铜器...",
+  "provenance": "河南安阳出土",
+  "era": "商代晚期"
+}
+```
+
+**响应**:
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "青铜鼎",
+  "dynasty": "商",
+  "category": "青铜器",
+  "created_at": "2026-04-09T12:00:00Z"
+}
+```
+
+### 获取文物列表
+
+```
+GET /artifacts?page=1&page_size=20&dynasty=商
+```
+
+**响应**:
+```json
+{
+  "items": [...],
+  "total": 50,
+  "page": 1,
+  "page_size": 20
+}
+```
+
+### 获取单个文物
+
+```
+GET /artifacts/{artifact_id}
+```
+
+### 删除文物
+
+```
+DELETE /artifacts/{artifact_id}
+```
+
+---
+
+## 图像管理
+
+### 上传图像
+
+```
+POST /images/upload/{artifact_id}
+Content-Type: multipart/form-data
+
+file: <binary>
+view_type: front | side_left | side_right | back | top | bottom
+```
+
+**响应**:
+```json
+{
+  "id": "uuid",
+  "artifact_id": "uuid",
+  "view_type": "front",
+  "file_url": "/uploads/xxx.png",
+  "file_path": "/data/uploads/xxx.png"
+}
+```
+
+### 获取文物图像列表
+
+```
+GET /images/{artifact_id}
+```
+
+### 删除图像
+
+```
+DELETE /images/{image_id}
+```
+
+---
+
+## 3D重建
+
+### 提交重建任务
+
+```
+POST /reconstruct
+```
+
+**请求体**:
+```json
+{
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000"
+}
+```
+
+**响应** (202 Accepted):
+```json
+{
+  "id": "task-uuid",
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "status": "pending",
+  "progress": 0,
+  "created_at": "2026-04-09T12:00:00Z"
+}
+```
+
+### 查询重建状态
+
+```
+GET /reconstruct/{task_id}
+```
+
+**响应**:
+```json
+{
+  "id": "task-uuid",
+  "status": "running",
+  "progress": 45,
+  "started_at": "2026-04-09T12:01:00Z"
+}
+```
+
+### 获取文物3D模型
+
+```
+GET /artifacts/{artifact_id}/model
+```
+
+**响应**:
+```json
+{
+  "id": "model-uuid",
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "model_url": "/models/550e8400.glb",
+  "polygon_count": 50000,
+  "has_texture": true,
+  "file_size": 2048576
+}
+```
+
+### 预加载/卸载模型
+
+```
+POST /reconstruct/model/load
+POST /reconstruct/model/unload
+```
+
+---
+
+## 文物故事
+
+### 生成文物故事
+
+```
+POST /stories/generate
+```
+
+**请求体**:
+```json
+{
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "style": "detailed"  // optional: brief | detailed | academic
+}
+```
+
+**响应** (202 Accepted):
+```json
+{
+  "id": "story-uuid",
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "status": "pending",
+  "style": "detailed",
+  "created_at": "2026-04-09T12:00:00Z"
+}
+```
+
+### 查询故事生成状态
+
+```
+GET /stories/{story_id}/status
+```
+
+### 获取文物故事
+
+```
+GET /stories/{artifact_id}/latest
+```
+
+**响应**:
+```json
+{
+  "id": "story-uuid",
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "story": "这是一段详细的文物故事...",
+  "style": "detailed",
+  "sources": ["《文物》2020年第1期", "《考古学报》2019年第3期"],
+  "created_at": "2026-04-09T12:05:00Z"
+}
+```
+
+### 手动提交故事
+
+```
+POST /stories/submit
+```
+
+**请求体**:
+```json
+{
+  "artifact_id": "550e8400-e29b-41d4-a716-446655440000",
+  "story": "手动输入的文物故事内容...",
+  "source": "《文物》2020年第1期"
+}
+```
+
+---
+
+## 知识图谱
+
+### 查询文物图谱
+
+```
+GET /kg/artifacts/{artifact_id}?depth=2
+```
+
+**响应**:
+```json
+{
+  "nodes": [
+    {"id": "artifact_001", "label": "Artifact", "properties": {...}},
+    {"id": "商", "label": "Dynasty", "properties": {...}}
+  ],
+  "edges": [
+    {"source": "artifact_001", "target": "商", "type": "BELONGS_TO_DYNASTY"}
+  ]
+}
+```
+
+### 搜索相关文物
+
+```
+GET /kg/related/{artifact_id}?types=SIMILAR_TO,RELATED_TO&limit=10
+```
+
+### 关键词搜索
+
+```
+GET /kg/search?keyword=青铜鼎&limit=20
+```
+
+### 获取图谱统计
+
+```
+GET /kg/statistics
+```
+
+---
+
+## RAG 检索
+
+### 搜索相关文档
+
+```
+GET /rag/search?query=青铜鼎的铸造工艺&top_k=5
+```
+
+**响应**:
+```json
+{
+  "results": [
+    {
+      "id": "doc-uuid",
+      "artifact_id": "artifact_001",
+      "content": "...",
+      "source": "《文物》2020年第1期",
+      "score": 0.85
+    }
+  ]
+}
+```
+
+### 获取文物文档
+
+```
+GET /rag/artifacts/{artifact_id}/documents
+```
+
+### 获取集合统计
+
+```
+GET /rag/statistics
+```
+
+---
+
+## 错误响应
+
+所有错误返回标准HTTP状态码和JSON格式：
+
+```json
+{
+  "detail": "错误描述信息"
+}
+```
+
+### 常见状态码
+
+| 状态码 | 说明 |
+|--------|------|
+| 200 | 成功 |
+| 202 | 异步任务已接受 |
+| 400 | 请求参数错误 |
+| 404 | 资源不存在 |
+| 500 | 服务器内部错误 |
+
+---
+
+## WebSocket (可选)
+
+用于实时进度推送：
+
+```
+ws://localhost:8000/ws/tasks/{task_id}
+```
+
+推送消息格式：
+```json
+{
+  "type": "progress",
+  "data": {
+    "progress": 50,
+    "status": "running"
+  }
+}
+```

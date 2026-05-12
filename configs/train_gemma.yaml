@@ -1,0 +1,58 @@
+# Gemma 3 文物故事生成 QLoRA 微调配置
+
+# 模型
+model_name: "google/gemma-3-4b-it"
+local_model_path: null
+
+# LoRA & QLoRA
+use_quantization: true
+quantization_bit: 4
+lora_r: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target_modules:
+  - "q_proj"
+  - "k_proj"
+  - "v_proj"
+  - "o_proj"
+  - "gate_proj"
+  - "up_proj"
+  - "down_proj"
+
+# 数据
+dataset_path: "dataset/stories"
+train_split: 0.8
+val_split: 0.1
+test_split: 0.1
+max_seq_length: 1024
+
+# 训练参数
+epochs: 10
+batch_size: 2
+gradient_accumulation_steps: 8
+learning_rate: 2.0e-4
+weight_decay: 0.01
+warmup_steps: 100
+max_grad_norm: 1.0
+scheduler: "cosine"
+
+# 混合精度
+use_amp: true
+dtype: "bf16"
+
+# 硬件
+device: "cuda"
+num_workers: 4
+
+# 输出
+output_dir: "models/gemma3_artifact_story_finetuned"
+checkpoint_dir: "models/gemma3_artifact_story_finetuned/checkpoints"
+log_dir: "models/gemma3_artifact_story_finetuned/logs"
+
+# 训练控制
+resume_from: null
+save_every: 2
+eval_every: 1
+
+# 随机种子
+seed: 42

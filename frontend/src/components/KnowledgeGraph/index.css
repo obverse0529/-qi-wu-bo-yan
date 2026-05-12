@@ -1,0 +1,115 @@
+.kg-card {
+  background: rgba(20, 20, 31, 0.65) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 169, 98, 0.2) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 169, 98, 0.05) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.kg-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(201,169,98,0.03) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.kg-card .ant-card-body {
+  padding: 0 !important;
+}
+
+.kg-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+  background: rgba(20, 20, 31, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.kg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(20, 20, 31, 0.2);
+  border-bottom: 1px solid rgba(201, 169, 98, 0.08);
+}
+
+.kg-legend .legend-hidden {
+  opacity: 0.25;
+}
+
+.kg-icon {
+  font-weight: bold;
+  font-size: 14px;
+  color: #C9A962;
+}
+
+.kg-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #C9A962;
+}
+
+.kg-node-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(20, 20, 31, 0.6);
+  border-top: 1px solid rgba(201, 169, 98, 0.15);
+  flex-wrap: wrap;
+}
+
+/* ECharts tooltip */
+.kg-card .echarts-tooltip {
+  background: rgba(14, 14, 22, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 169, 98, 0.3) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  padding: 12px 16px !important;
+}
+
+/* Canvas */
+.kg-card canvas {
+  border-radius: 0 0 16px 16px;
+}
+
+/* Tag styling */
+.kg-legend .ant-tag {
+  background: rgba(20, 20, 31, 0.6);
+  border: 1px solid rgba(201, 169, 98, 0.2);
+  color: #C9A962;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kg-legend .ant-tag:hover {
+  background: rgba(201, 169, 98, 0.15);
+  border-color: rgba(201, 169, 98, 0.4);
+}
+
+/* Select in toolbar */
+.kg-toolbar .ant-select-selector {
+  background: rgba(20, 20, 31, 0.8) !important;
+  border-color: rgba(201, 169, 98, 0.2) !important;
+}
+
+.kg-toolbar .ant-select-selection-item {
+  color: #C9A962 !important;
+}

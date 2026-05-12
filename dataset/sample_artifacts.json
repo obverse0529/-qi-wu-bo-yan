@@ -1,0 +1,102 @@
+[
+  {
+    "artifact_id": "artifact_001",
+    "name": "后母戊鼎",
+    "dynasty": "商",
+    "category": "青铜器",
+    "site": "安阳",
+    "materials": ["青铜"],
+    "techniques": ["铸造", "泥范法"],
+    "description": "后母戊鼎是商代青铜器的代表作，高133厘米，口长112厘米，口宽79厘米，重832.37千克，是目前已知最重的青铜器。鼎腹呈长方形，四足中空，器型厚重庄严。",
+    "provenance": "1939年河南省安阳市武官村出土",
+    "era": "商代晚期",
+    "images": [
+      {"view": "front", "path": "dataset/raw/artifacts/artifact_001/front.png"},
+      {"view": "side_left", "path": "dataset/raw/artifacts/artifact_001/side_left.png"},
+      {"view": "side_right", "path": "dataset/raw/artifacts/artifact_001/side_right.png"},
+      {"view": "back", "path": "dataset/raw/artifacts/artifact_001/back.png"}
+    ],
+    "story": "后母戊鼎原称司母戊鼎，后因改名为后母戊鼎。此鼎是商王文丁为祭祀其母戊而制作的青铜礼器。鼎腹内壁铸有\"后母戊\"三字，故名后母戊鼎。\\n\\n这件青铜重器反映了商代晚期青铜铸造技术的高超水平。其铸造需要多个陶范组合，工序复杂，体现了当时高度发达的奴隶制文明。鼎作为古代最重要的礼器之一，是王权和等级的象征。后母戊鼎的发现，为研究商代历史提供了珍贵的实物资料。",
+    "source": "《文物》2020年第1期"
+  },
+  {
+    "artifact_id": "artifact_002",
+    "name": "四羊方尊",
+    "dynasty": "商",
+    "category": "青铜器",
+    "site": "宁乡",
+    "materials": ["青铜"],
+    "techniques": ["铸造", "分铸法"],
+    "description": "四羊方尊是商代青铜器的精品，高58.3厘米，边长52.4厘米，重34.5千克。尊的四个角各铸一只大卷角羊，造型生动逼真，是青铜器中的杰作。",
+    "provenance": "1938年湖南省宁乡县黄材镇出土",
+    "era": "商代晚期",
+    "images": [
+      {"view": "front", "path": "dataset/raw/artifacts/artifact_002/front.png"},
+      {"view": "side_left", "path": "dataset/raw/artifacts/artifact_002/side_left.png"},
+      {"view": "side_right", "path": "dataset/raw/artifacts/artifact_002/side_right.png"},
+      {"view": "back", "path": "dataset/raw/artifacts/artifact_002/back.png"}
+    ],
+    "story": "四羊方尊是商代晚期青铜器的代表作，其独特的造型和精湛的工艺使其成为中国古代青铜器的瑰宝。\\n\\n方尊的四角各铸一只大卷角羊，羊头突出尊外，羊身与尊壁相合。羊的形象生动写实，寓意吉祥。方尊的颈部装饰有夔纹和兽面纹，线条流畅，层次分明。\\n\\n四羊方尊采用了分铸法铸造，先铸羊头，再与尊体合铸，技术难度极高。其发现对于研究商代青铜铸造技术和艺术风格具有重要价值。",
+    "source": "《考古学报》2019年第3期"
+  },
+  {
+    "artifact_id": "artifact_003",
+    "name": "唐三彩骆驼俑",
+    "dynasty": "唐",
+    "category": "陶俑",
+    "site": "西安",
+    "materials": ["陶器", "釉陶"],
+    "techniques": ["塑形", "釉烧"],
+    "description": "唐三彩骆驼俑出土于西安地区，高约70厘米，骆驼呈跪卧状，背驮货物，形象生动。骆驼是唐代丝绸之路的重要运输工具。",
+    "provenance": "陕西省西安市唐代墓葬出土",
+    "era": "唐代",
+    "images": [
+      {"view": "front", "path": "dataset/raw/artifacts/artifact_003/front.png"},
+      {"view": "side_left", "path": "dataset/raw/artifacts/artifact_003/side_left.png"},
+      {"view": "side_right", "path": "dataset/raw/artifacts/artifact_003/side_right.png"},
+      {"view": "back", "path": "dataset/raw/artifacts/artifact_003/back.png"}
+    ],
+    "story": "唐三彩是唐代低温铅釉陶器的通称，因常用黄、绿、白三种釉色而得名。三彩骆驼俑是唐代墓葬中常见的随葬品，反映了当时丝绸之路的繁荣景象。\\n\\n唐代是中国古代骆驼饲养的鼎盛时期，骆驼作为沙漠地区的主要交通工具，在丝绸之路贸易中发挥着重要作用。骆驼俑背上驮着的货物通常包括丝绸、瓷器等商品，是东西方文化交流的生动见证。\\n\\n唐三彩的制作工艺复杂，需要经过塑形、阴干、素烧、施釉、釉烧等多道工序。其色彩鲜艳、造型生动，具有极高的艺术价值。",
+    "source": "《文物》2021年第5期"
+  },
+  {
+    "artifact_id": "artifact_004",
+    "name": "金缕玉衣",
+    "dynasty": "汉",
+    "category": "玉器",
+    "site": "徐州",
+    "materials": ["玉", "金丝"],
+    "techniques": ["琢磨", "金丝编织"],
+    "description": "金缕玉衣是汉代皇帝和高级贵族的葬服，由数千片玉片用金丝编织而成。徐州出土的金缕玉衣是汉代玉衣的典型代表。",
+    "provenance": "江苏省徐州市汉楚王墓出土",
+    "era": "西汉",
+    "images": [
+      {"view": "front", "path": "dataset/raw/artifacts/artifact_004/front.png"},
+      {"view": "side_left", "path": "dataset/raw/artifacts/artifact_004/side_left.png"},
+      {"view": "side_right", "path": "dataset/raw/artifacts/artifact_004/side_right.png"},
+      {"view": "back", "path": "dataset/raw/artifacts/artifact_004/back.png"}
+    ],
+    "story": "金缕玉衣是汉代特有的葬服，反映了汉代贵族的丧葬观念和玉器制作工艺的高度发展。古人认为玉可防腐，因此用玉片包裹全身，象征尸身不腐。\\n\\n金缕玉衣的制作工艺极为复杂，需要将大量玉片按照人体形状切割打磨，然后用金丝连缀成衣。每片玉片的大小、厚度都要精心设计，以确保穿着贴合。据说一件金缕玉衣需要数十名工匠耗时数年才能完成。\\n\\n徐州汉楚王墓出土的金缕玉衣是已知保存最为完整的一件，对研究汉代玉器工艺和丧葬制度具有重要意义。",
+    "source": "《考古》2018年第2期"
+  },
+  {
+    "artifact_id": "artifact_005",
+    "name": "清乾隆粉彩百花纹瓶",
+    "dynasty": "清",
+    "category": "瓷器",
+    "site": "景德镇",
+    "materials": ["瓷器", "釉下彩", "釉上彩"],
+    "techniques": ["拉坯", "釉下彩绘", "釉上彩绘", "高温烧制"],
+    "description": "清乾隆粉彩百花纹瓶是清代官窑瓷器的精品，高约40厘米，瓶身满绘各种花卉纹样，色彩鲜艳，构图繁密，展现了乾隆时期瓷器工艺的最高水平。",
+    "provenance": "清宫旧藏",
+    "era": "清代乾隆年间",
+    "images": [
+      {"view": "front", "path": "dataset/raw/artifacts/artifact_005/front.png"},
+      {"view": "side_left", "path": "dataset/raw/artifacts/artifact_005/side_left.png"},
+      {"view": "side_right", "path": "dataset/raw/artifacts/artifact_005/side_right.png"},
+      {"view": "back", "path": "dataset/raw/artifacts/artifact_005/back.png"}
+    ],
+    "story": "粉彩是清代瓷器的重要品种，是在珐琅彩影响下创烧的新品种。百花纹是粉彩瓷器中的经典纹样，又称\"百花图\"或\"百花纹\"，以多种花卉植物为主题，满布器身。\\n\\n乾隆时期是清代瓷器制作的黄金时代，百花纹瓶以其精湛的工艺和绚丽的色彩著称。制作这样一件瓷器，需要经过设计、选料、拉坯、利坯、彩绘、上釉、烧制等多道工序，任何一步出现问题都可能导致前功尽弃。\\n\\n百花纹象征着繁花似锦、国泰民安，体现了清代统治者对吉祥幸福的美好祝愿。这类瓷器在当时就是珍贵的御用品，如今更是各大博物馆的镇馆之宝。",
+    "source": "《故宫博物院院刊》2020年第4期"
+  }
+]

@@ -1,0 +1,47 @@
+# Hunyuan3D 微调训练配置
+
+# 模型
+model_name: "Tencent/Hunyuan3D-1"
+local_model_path: null
+
+# 数据
+dataset_path: "dataset/processed"
+train_split: 0.8
+val_split: 0.1
+test_split: 0.1
+
+# 训练参数
+epochs: 50
+batch_size: 4
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-4
+weight_decay: 0.01
+warmup_steps: 100
+max_grad_norm: 1.0
+
+# 优化器
+optimizer: "adamw"
+scheduler: "cosine"
+
+# 混合精度
+use_amp: true
+dtype: "bf16"
+
+# 硬件
+device: "cuda"
+num_workers: 4
+prefetch_factor: 2
+
+# 输出
+output_dir: "models/hunyuan3d_finetuned"
+checkpoint_dir: "models/hunyuan3d_finetuned/checkpoints"
+log_dir: "models/hunyuan3d_finetuned/logs"
+
+# 训练控制
+resume_from: null
+save_every: 5
+eval_every: 1
+gradient_checkpointing: true
+
+# 随机种子
+seed: 42
