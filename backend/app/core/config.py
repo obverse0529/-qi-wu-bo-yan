@@ -80,6 +80,23 @@ class Settings(BaseSettings):
     def raw_artifacts_dir(self) -> Path:
         return self.dataset_dir / "raw" / "artifacts"
 
+    # Redis
+    redis_url: str = "redis://localhost:6379/0"
+    cache_ttl_short: int = 60
+    cache_ttl_default: int = 300
+    cache_ttl_long: int = 3600
+
+    # Rate limiting
+    rate_limit_enabled: bool = True
+    rate_limit_default: int = 60
+    rate_limit_strict: int = 10
+    rate_limit_window: int = 60
+    rate_limit_whitelist: list = ["127.0.0.1", "localhost"]
+
+    # Logging
+    log_level: str = "INFO"
+    log_dir: str = "/app/logs"
+
     # CORS
     cors_origins: list = ["http://localhost:3000", "http://localhost:5173"]
 

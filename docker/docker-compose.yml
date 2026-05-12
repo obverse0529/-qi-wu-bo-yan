@@ -37,6 +37,13 @@ services:
       - EMBEDDING_MODEL=${EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
       - RAG_TOP_K=${RAG_TOP_K:-5}
       - CORS_ORIGINS=${CORS_ORIGINS:-["http://localhost:3000"]}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - RATE_LIMIT_ENABLED=${RATE_LIMIT_ENABLED:-true}
+      - RATE_LIMIT_DEFAULT=${RATE_LIMIT_DEFAULT:-60}
+      - RATE_LIMIT_STRICT=${RATE_LIMIT_STRICT:-10}
+      - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-60}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - LOG_DIR=${LOG_DIR:-/app/logs}
     depends_on:
       postgres:
         condition: service_healthy

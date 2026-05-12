@@ -23,6 +23,7 @@ services:
       - "127.0.0.1:${APP_PORT:-8000}:8000"
     volumes:
       - backend_uploads:/app/uploads
+      - backend_logs:/app/logs
     environment:
       - DEBUG=false
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4 --log-level warning
@@ -145,3 +146,4 @@ services:
 
 volumes:
   backend_uploads:
+  backend_logs:
